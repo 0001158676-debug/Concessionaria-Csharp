@@ -1,23 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using Concessionaria.Persistencia;
-
-namespace Concessionaria.Classes
+﻿namespace Concessionaria.Classes
 {
+    [Serializable]
     public class Vendedor
     {
         public string Nome { get; set; }
-        public string Matricula { get; set; }
+        public string Codigo { get; set; }
+        public string Telefone { get; set; }
+        public double Comissao { get; set; }
 
-        public static void ListarVendedores()
+        public Vendedor() { }
+
+        public Vendedor(string nome, string codigo, string telefone, double comissao)
         {
-            Console.Clear();
-            Console.WriteLine("=== LISTA DE VENDEDORES ===");
-            if (GerenciadorDeDados.Dados.Vendedores.Count == 0)
-                Console.WriteLine("Nenhum vendedor cadastrado.");
-            else
-                foreach (var v in GerenciadorDeDados.Dados.Vendedores)
-                    Console.WriteLine("Nome: {v.Nome} | Matrícula: {v.Matricula}");
+            Nome = nome;
+            Codigo = codigo;
+            Telefone = telefone;
+            Comissao = comissao;
+        }
+
+        public override string ToString()
+        {
+            return "{Nome} | Código: {Codigo} | Telefone: {Telefone} | Comissão: {Comissao * 100}%";
         }
     }
 }
+

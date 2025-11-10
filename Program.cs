@@ -1,131 +1,177 @@
-﻿using System;
-using Concessionaria.Classes;
+﻿﻿using Concessionaria.Classes;
 using Concessionaria.Persistencia;
 
-namespace Concessionaria
+GerenciadorDeDados.Inicializar();
+
+Console.Title = "🏎️ Sistema da Concessionária - InstaSharp";
+Console.ForegroundColor = ConsoleColor.Cyan;
+Console.WriteLine("==============================================");
+Console.WriteLine("         SISTEMA DE CONCESSIONÁRIA CLI");
+Console.WriteLine("==============================================");
+Console.ResetColor();
+
+// ==== LOGIN ====
+bool logado = false;
+while (!logado)
 {
-    class Program
+    Console.Write("\nUsuário: ");
+    string usuario = Console.ReadLine() ?? "";
+
+    Console.Write("Senha: ");
+    string senha = LerSenha();
+
+    if (usuario == "Admin" && senha == "1234")
     {
-        static void Main(string[] args)
-        {
-            Console.Title = "Sistema da Concessionária";
-
-            // Tela de login
-            Console.WriteLine("=== SISTEMA DA CONCESSIONÁRIA ===\n");
-            Console.Write("Usuário: ");
-            string usuario = Console.ReadLine();
-
-            Console.Write("Senha: ");
-            string senha = LerSenha();
-
-            if (usuario != "admin" || senha != "1234")
-            {
-                Console.WriteLine("\nUsuário ou senha incorretos!");
-                return;
-            }
-
-            // Menu principal
-            int opcao = 0;
-            do
-            {
-                Console.Clear();
-                Console.WriteLine("=== MENU PRINCIPAL ===");
-                Console.WriteLine("1 - Registrar Venda");
-                Console.WriteLine("2 - Registrar Reserva");
-                Console.WriteLine("3 - Registrar Aquisição");
-                Console.WriteLine("4 - Listar Clientes");
-                Console.WriteLine("5 - Listar Vendedores");
-                Console.WriteLine("6 - Listar Veículos");
-                Console.WriteLine("7 - Listar Atividades");
-                Console.WriteLine("0 - Sair");
-                Console.Write("\nEscolha uma opção: ");
-
-                int.TryParse(Console.ReadLine(), out opcao);
-                Console.Clear();
-
-                switch (opcao)
-                {
-                    case 1:
-                        Atividade.RealizarAtividade("Venda");
-                        GerenciadorDeDados.Salvar();
-                        Pausar();
-                        break;
-                    case 2:
-                        Atividade.RealizarAtividade("Reserva");
-                        GerenciadorDeDados.Salvar();
-                        Pausar();
-                        break;
-                    case 3:
-                        Atividade.RealizarAtividade("Aquisição");
-                        GerenciadorDeDados.Salvar();
-                        Pausar();
-                        break;
-                    case 4:
-                        Cliente.ListarClientes();
-                        Pausar();
-                        break;
-                    case 5:
-                        Vendedor.ListarVendedores();
-                        Pausar();
-                        break;
-                    case 6:
-                        Veiculo.ListarVeiculos();
-                        Pausar();
-                        break;
-                    case 7:
-                        ListarAtividades();
-                        Pausar();
-                        break;
-                    case 0:
-                        Console.WriteLine("Saindo do sistema...");
-                        break;
-                    default:
-                        Console.WriteLine("Opção inválida!");
-                        Pausar();
-                        break;
-                }
-            } while (opcao != 0);
-        }
-
-        static void ListarAtividades()
-        {
-            Console.WriteLine("=== LISTA DE ATIVIDADES ===");
-            if (GerenciadorDeDados.Dados.Atividades.Count == 0)
-                Console.WriteLine("Nenhuma atividade registrada.");
-            else
-                foreach (var a in GerenciadorDeDados.Dados.Atividades)
-                    Console.WriteLine($"{a.Tipo} | Cliente: {a.Cliente} | Veículo: {a.Veiculo} | Vendedor: {a.Vendedor} | Data: {a.Data}");
-        }
-
-        static void Pausar()
-        {
-            Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
-            Console.ReadKey();
-        }
-
-        static string LerSenha()
-        {
-            string senha = "";
-            ConsoleKeyInfo key;
-
-            do
-            {
-                key = Console.ReadKey(true);
-                if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
-                {
-                    senha += key.KeyChar;
-                    Console.Write("*");
-                }
-                else if (key.Key == ConsoleKey.Backspace && senha.Length > 0)
-                {
-                    senha = senha.Substring(0, (senha.Length - 1));
-                    Console.Write("\b \b");
-                }
-            } while (key.Key != ConsoleKey.Enter);
-
-            Console.WriteLine();
-            return senha;
-        }
+        logado = true;
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("\nLogin realizado com sucesso!\n");
+        Console.ResetColor();
+    }
+    else
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("\nUsuário ou senha incorretos, tente novamente.");
+        Console.ResetColor();
     }
 }
+
+// ==== MENU PRINCIPAL ====
+int opcao;
+do
+{
+    Console.WriteLine("\n===== MENU PRINCIPAL =====");
+    Console.WriteLine("1 - Registrar Venda");
+    Console.WriteLine("2 - Registrar Reserva");
+    Console.WriteLine("3 - Registrar Aquisição");
+    Console.WriteLine("4 - Listar Clientes");
+    Console.WriteLine("5 - Listar Vendedores");
+    Console.WriteLine("6 - Listar Veículos");
+    Console.WriteLine("7 - Listar Atividades");
+    Console.WriteLine("0 - Sair");
+    Console.Write("Escolha uma opção: ");
+
+    int.TryParse(Console.ReadLine(), out opcao);
+    Console.WriteLine();
+
+    switch (opcao)
+    {
+        case 1:
+            RegistrarAtividade("Venda");
+            break;
+        case 2:
+            RegistrarAtividade("Reserva");
+            break;
+        case 3:
+            RegistrarAtividade("Aquisição");
+            break;
+        case 4:
+            Listar(GerenciadorDeDados.Clientes);
+            break;
+        case 5:
+            Listar(GerenciadorDeDados.Vendedores);
+            break;
+        case 6:
+            Listar(GerenciadorDeDados.Veiculos);
+            break;
+        case 7:
+            Listar(GerenciadorDeDados.Atividades);
+            break;
+        case 0:
+            Console.WriteLine("Encerrando o sistema...");
+            GerenciadorDeDados.SalvarTudo();
+            break;
+        default:
+            Console.WriteLine("Opção inválida. Tente novamente.");
+            break;
+    }
+
+} while (opcao != 0);
+
+Console.ForegroundColor = ConsoleColor.Cyan;
+Console.WriteLine("\nObrigado por usar o sistema da Concessionária!");
+Console.ResetColor();
+
+// ================= FUNÇÕES AUXILIARES =================
+
+void RegistrarAtividade(string tipo)
+{
+    Console.WriteLine($"--- Registro de {tipo} ---");
+
+    var cliente = Escolher("cliente", GerenciadorDeDados.Clientes);
+    var vendedor = Escolher("vendedor", GerenciadorDeDados.Vendedores);
+    var veiculo = Escolher("veículo", GerenciadorDeDados.Veiculos);
+
+    if (cliente == null || vendedor == null || veiculo == null)
+    {
+        Console.WriteLine("Erro: seleção inválida.");
+        return;
+    }
+
+    var atividade = new Atividade(tipo, cliente, veiculo, vendedor);
+    GerenciadorDeDados.Atividades.Add(atividade);
+    GerenciadorDeDados.SalvarTudo();
+
+    Console.ForegroundColor = ConsoleColor.Green;
+    Console.WriteLine("\n✅ {tipo} registrada com sucesso!");
+    Console.ResetColor();
+}
+
+T? Escolher<T>(string tipo, List<T> lista)
+{
+    if (lista.Count == 0)
+    {
+        Console.WriteLine("Nenhum {tipo} cadastrado.\n");
+        return default;
+    }
+
+    Console.WriteLine("\nSelecione um {tipo}:");
+    for (int i = 0; i < lista.Count; i++)
+        Console.WriteLine($"{i + 1} - {lista[i]}");
+
+    Console.Write($"Digite o número do {tipo} desejado: ");
+    if (int.TryParse(Console.ReadLine(), out int escolha) && escolha > 0 && escolha <= lista.Count)
+        return lista[escolha - 1];
+
+    Console.WriteLine("Opção inválida.\n");
+    return default;
+}
+
+void Listar<T>(List<T> lista)
+{
+    if (lista.Count == 0)
+    {
+        Console.WriteLine("Nenhum registro encontrado.\n");
+        return;
+    }
+
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    foreach (var item in lista)
+        Console.WriteLine(item);
+    Console.ResetColor();
+    Console.WriteLine();
+}
+
+string LerSenha()
+{
+    string senha = "";
+    ConsoleKeyInfo tecla;
+    do
+    {
+        tecla = Console.ReadKey(true);
+        if (tecla.Key != ConsoleKey.Backspace && tecla.Key != ConsoleKey.Enter)
+        {
+            senha += tecla.KeyChar;
+            Console.Write("*");
+        }
+        else if (tecla.Key == ConsoleKey.Backspace && senha.Length > 0)
+        {
+            senha = senha.Substring(0, senha.Length - 1);
+            Console.Write("\b \b");
+        }
+    } while (tecla.Key != ConsoleKey.Enter);
+
+    Console.WriteLine();
+    return senha;
+}
+
 
