@@ -9,6 +9,20 @@
       "Veiculo": "civic g10",
       "Vendedor": "luiz",
       "Data": "2025-11-09T20:31:49.8642339-03:00"
+    },
+    {
+      "Tipo": "Venda",
+      "Cliente": "Isabella",
+      "Veiculo": "Civic G10 2017",
+      "Vendedor": "Luiz",
+      "Data": "2025-11-10T12:48:21.8344515-03:00"
+    },
+    {
+      "Tipo": "Aquisi\u00E7\u00E3o",
+      "Cliente": "Isabella",
+      "Veiculo": "Fusca ",
+      "Vendedor": "Liz",
+      "Data": "2025-11-10T12:48:58.7729268-03:00"
     }
   ]
 }

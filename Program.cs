@@ -8,7 +8,9 @@ namespace Concessionaria
     {
         static void Main(string[] args)
         {
+            // Carrega os dados ao iniciar a aplicação
             GerenciadorDeDados.CarregarDados();
+
             Console.Clear();
 
             Console.WriteLine("=== SISTEMA DA CONCESSIONÁRIA ===\n");
@@ -27,9 +29,15 @@ namespace Concessionaria
                 Console.WriteLine("4 - Listar clientes");
                 Console.WriteLine("5 - Listar veículos");
                 Console.WriteLine("6 - Listar vendedores");
+                Console.WriteLine("7 - Cadastrar veículo");
+                Console.WriteLine("8 - Cadastrar vendedor");
                 Console.WriteLine("0 - Sair");
                 Console.Write("\nEscolha uma opção: ");
-                opcao = int.Parse(Console.ReadLine());
+
+                if (!int.TryParse(Console.ReadLine(), out opcao))
+                {
+                    opcao = 0;
+                }
 
                 switch (opcao)
                 {
@@ -51,6 +59,12 @@ namespace Concessionaria
                     case 6:
                         Vendedor.ListarVendedores();
                         break;
+                    case 7:
+                        Veiculo.CadastrarVeiculo();
+                        break;
+                    case 8:
+                        Vendedor.CadastrarVendedor();
+                        break;
                 }
 
                 if (opcao != 0)
@@ -61,10 +75,14 @@ namespace Concessionaria
 
             } while (opcao != 0);
 
+            // Salva os dados antes de sair
             GerenciadorDeDados.SalvarDados();
             Console.WriteLine("\nSaindo do sistema...");
         }
 
+        /// <summary>
+        /// Método simples de login hardcoded.
+        /// </summary>
         static bool FazerLogin()
         {
             Console.Write("Usuário: ");
@@ -86,5 +104,4 @@ namespace Concessionaria
         }
     }
 }
-
 

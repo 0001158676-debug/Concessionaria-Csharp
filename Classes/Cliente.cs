@@ -17,8 +17,8 @@ namespace Concessionaria.Classes
                 Console.WriteLine("Nenhum cliente cadastrado.");
             else
                 foreach (var c in GerenciadorDeDados.Dados.Clientes)
-                    Console.WriteLine("Nome: {c.Nome} | CPF: {c.Cpf}");
+                    
+                    Console.WriteLine(string.Format("Nome: {0} | CPF: {1}", c.Nome, c.Cpf));
         }
     }
 }
-

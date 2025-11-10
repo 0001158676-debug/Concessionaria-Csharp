@@ -14,7 +14,7 @@ namespace Concessionaria.Classes
         public static void RealizarAtividade(string tipo)
         {
             Console.Clear();
-            Console.WriteLine("=== {tipo.ToUpper()} DE VEÍCULO ===");
+            Console.WriteLine("=== VENDA DE VEÍCULO ===");
 
             Console.Write("Nome do cliente: ");
             string cliente = Console.ReadLine();
@@ -34,8 +34,8 @@ namespace Concessionaria.Classes
                 Data = DateTime.Now
             });
 
-            Console.WriteLine("\n{tipo} registrada com sucesso!");
+            
+            Console.WriteLine(string.Format("\n{0} registrada com sucesso!", tipo));
         }
     }
 }
-
