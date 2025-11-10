@@ -1,28 +1,40 @@
-﻿namespace Concessionaria.Classes
+﻿using System;
+using Concessionaria.Persistencia;
+
+namespace Concessionaria.Classes
 {
-    [Serializable]
     public class Atividade
     {
-        public string Tipo { get; set; }  // Venda, Reserva, Aquisição
-        public Cliente Cliente { get; set; }
-        public Veiculo Veiculo { get; set; }
-        public Vendedor Vendedor { get; set; }
+        public string Tipo { get; set; }
+        public string Cliente { get; set; }
+        public string Veiculo { get; set; }
+        public string Vendedor { get; set; }
         public DateTime Data { get; set; }
 
-        public Atividade() { }
-
-        public Atividade(string tipo, Cliente cliente, Veiculo veiculo, Vendedor vendedor)
+        public static void RealizarAtividade(string tipo)
         {
-            Tipo = tipo;
-            Cliente = cliente;
-            Veiculo = veiculo;
-            Vendedor = vendedor;
-            Data = DateTime.Now;
-        }
+            Console.Clear();
+            Console.WriteLine("=== {tipo.ToUpper()} DE VEÍCULO ===");
 
-        public override string ToString()
-        {
-            return "{Tipo} | Cliente: {Cliente.Nome} | Vendedor: {Vendedor.Nome} | Veículo: {Veiculo.Marca} {Veiculo.Modelo} | Data: {Data}";
+            Console.Write("Nome do cliente: ");
+            string cliente = Console.ReadLine();
+
+            Console.Write("Modelo do veículo: ");
+            string veiculo = Console.ReadLine();
+
+            Console.Write("Nome do vendedor: ");
+            string vendedor = Console.ReadLine();
+
+            GerenciadorDeDados.Dados.Atividades.Add(new Atividade
+            {
+                Tipo = tipo,
+                Cliente = cliente,
+                Veiculo = veiculo,
+                Vendedor = vendedor,
+                Data = DateTime.Now
+            });
+
+            Console.WriteLine("\n{tipo} registrada com sucesso!");
         }
     }
 }

@@ -12,3 +12,4 @@ C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\refint\Concessi
 C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\Concessionaria.pdb
 C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\Concessionaria.genruntimeconfig.cache
 C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\ref\Concessionaria.dll
+C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\Concessionaria.sourcelink.json

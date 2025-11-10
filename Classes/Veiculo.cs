@@ -1,27 +1,25 @@
-﻿namespace Concessionaria.Classes
+﻿using System;
+using System.Collections.Generic;
+using Concessionaria.Persistencia;
+
+namespace Concessionaria.Classes
 {
-    [Serializable]
     public class Veiculo
     {
         public string Modelo { get; set; }
-        public string Marca { get; set; }
-        public int Ano { get; set; }
-        public double Preco { get; set; }
+        public string Placa { get; set; }
 
-        public Veiculo() { }
-
-        public Veiculo(string modelo, string marca, int ano, double preco)
+        public static void ListarVeiculos()
         {
-            Modelo = modelo;
-            Marca = marca;
-            Ano = ano;
-            Preco = preco;
-        }
-
-        public override string ToString()
-        {
-            return "{Marca} {Modelo} ({Ano}) - R$ {Preco:N2}";
+            Console.Clear();
+            Console.WriteLine("=== LISTA DE VEÍCULOS ===");
+            if (GerenciadorDeDados.Dados.Veiculos.Count == 0)
+                Console.WriteLine("Nenhum veículo cadastrado.");
+            else
+                foreach (var v in GerenciadorDeDados.Dados.Veiculos)
+                    Console.WriteLine("Modelo: {v.Modelo} | Placa: {v.Placa}");
         }
     }
 }
+
 
