@@ -1,0 +1,14 @@
+{
+  "Clientes": [],
+  "Vendedores": [],
+  "Veiculos": [],
+  "Atividades": [
+    {
+      "Tipo": "Venda",
+      "Cliente": "isabella",
+      "Veiculo": "civic g10",
+      "Vendedor": "luiz",
+      "Data": "2025-11-09T20:31:49.8642339-03:00"
+    }
+  ]
+}

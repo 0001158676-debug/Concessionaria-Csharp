@@ -1,0 +1,14 @@
+C:\Users\playf\ConcessionariaCLI\Concessionaria\bin\Debug\net9.0\Concessionaria.exe
+C:\Users\playf\ConcessionariaCLI\Concessionaria\bin\Debug\net9.0\Concessionaria.deps.json
+C:\Users\playf\ConcessionariaCLI\Concessionaria\bin\Debug\net9.0\Concessionaria.runtimeconfig.json
+C:\Users\playf\ConcessionariaCLI\Concessionaria\bin\Debug\net9.0\Concessionaria.dll
+C:\Users\playf\ConcessionariaCLI\Concessionaria\bin\Debug\net9.0\Concessionaria.pdb
+C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\Concessionaria.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\Concessionaria.AssemblyInfoInputs.cache
+C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\Concessionaria.AssemblyInfo.cs
+C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\Concessionaria.csproj.CoreCompileInputs.cache
+C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\Concessionaria.dll
+C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\refint\Concessionaria.dll
+C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\Concessionaria.pdb
+C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\Concessionaria.genruntimeconfig.cache
+C:\Users\playf\ConcessionariaCLI\Concessionaria\obj\Debug\net9.0\ref\Concessionaria.dll
